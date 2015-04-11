@@ -1,0 +1,20 @@
+Device Model:     ST2000NM0033-9ZM175
+Serial Number:    FOO
+LU WWN Device Id: FOO
+Firmware Version: 0001
+User Capacity:    2,000,398,934,016 bytes [2.00 TB]
+Sector Size:      512 bytes logical/physical
+Device is:        Not in smartctl database [for details use: -P showall]
+ATA Version is:   8
+ATA Standard is:  ACS-2 (revision not indicated)
+Local Time is:    Fri Nov  7 14:36:41 2014 EST
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled
+SMART overall-health self-assessment test result: PASSED
+Offline data collection status:  (0x82)	Offline data collection activity
+Self-test execution status:      (   0)	The previous self-test routine completed
+Error logging capability:        (0x01)	Error logging supported.
+SCT capabilities: 	       (0x50bd)	SCT Status supported.
+					SCT Error Recovery Control supported.
+					SCT Feature Control supported.
+					SCT Data Table supported.
