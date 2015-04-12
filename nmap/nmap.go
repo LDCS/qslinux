@@ -92,8 +92,8 @@ func (self *Nmapdata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListNmapdata extracts nmap data
-func DoListNmapdata(_subnets map[string][]string, _verbose bool) (smap map[string]*Nmapdata) {
+// Nmap extracts nmap data
+func Nmap(_subnets map[string][]string, _verbose bool) (smap map[string]*Nmapdata) {
 	smap = make(map[string]*Nmapdata)
 	out := ""
 	for subname, subnetinfo := range _subnets {

@@ -205,8 +205,8 @@ func (self *Hpdata) SprintAll(_box string) string {
 	return ostr
 }
 
-// DoListHpdata extracts HPacucli data
-func DoListHpdata(_verbose bool) *Hpdata {
+// Hp extracts HPacucli data
+func Hp(_verbose bool) *Hpdata {
 	hpdata := new(Hpdata)
 	hpdata.Pdmap_ = make(map[string]*Hppd)
 	hpdata.Ldmap_ = make(map[string]*Hpld)

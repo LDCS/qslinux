@@ -95,8 +95,8 @@ func (self *Blkiddata) Print() {
 // New is generic
 func New() *Blkiddata { return new(Blkiddata) }
 
-// DoListBlkiddata obtains information from blkid
-func DoListBlkiddata(_verbose bool) (smap map[string]*Blkiddata) {
+// Blkid obtains information from blkid
+func Blkid(_verbose bool) (smap map[string]*Blkiddata) {
 	smap = make(map[string]*Blkiddata)
 	out := genutil.BashExecOrDie(_verbose, "/usr/bin/timeout 10 /sbin/blkid | sed -e 's/\" /\"|/g' | sed -s 's/ /|/' | sed -e 's/ /_/g' | sed -e 's/|/ /g'", ".") // turn sep spaces into pipe, then embedded spaces into underscore, then revert sep pipe to sep space
 	if _verbose {
@@ -136,7 +136,7 @@ func DoListBlkiddata(_verbose bool) (smap map[string]*Blkiddata) {
 				}
 			}
 			if len(lastblkidd.Devname_) < 1 {
-				fmt.Printf("DoListBlkiddata: Skipping empty Devname: line%d:  %s\n", ii, strings.Join(items, "#"))
+				fmt.Printf("Blkid: Skipping empty Devname: line%d:  %s\n", ii, strings.Join(items, "#"))
 				continue
 			}
 			smap[lastblkidd.Devname_] = lastblkidd

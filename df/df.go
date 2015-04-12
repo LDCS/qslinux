@@ -125,8 +125,8 @@ func inferDevName(_name string) string {
 	return _name
 }
 
-// DoListDfdata collects df data
-func DoListDfdata(_localOnly, _verbose bool) (smap map[string][]*Dfdata) {
+// Df collects df data
+func Df(_localOnly, _verbose bool) (smap map[string][]*Dfdata) {
 	smap = make(map[string][]*Dfdata)
 	localmap := map[string]bool{}
 	out := genutil.BashExecOrDie(_verbose, genutil.StrTernary(_localOnly, "/usr/bin/timeout 10 /bin/df -klPT", "/bin/df -klPT; /usr/bin/timeout 10 /bin/df -kPT"), ".")

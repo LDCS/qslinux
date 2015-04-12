@@ -106,8 +106,8 @@ func (self *Tgtddata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListTgtddata extracts tgtd data
-func DoListTgtddata(_verbose bool) (smap map[string]*Tgtddata) {
+// Tgtd extracts tgtd data
+func Tgtd(_verbose bool) (smap map[string]*Tgtddata) {
 	smap = make(map[string]*Tgtddata)
 	out := genutil.BashExecOrDie(_verbose, "which tgtadm && /usr/bin/timeout 10 tgtadm --lld iscsi --op show --mode target", ".")
 	if _verbose {

@@ -131,57 +131,57 @@ func mergeSmartctl(_jj int, _sum, _add *Smartctldata) {
 	_sum.Errorswrite_ += ";" + _add.Errorswrite_
 }
 
-// DoListSmartctldataOne is a loop over smartctl controllers
-func DoListSmartctldataOne(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _hp *hp.Hpdata, _verbose bool) *Smartctldata {
+// SmartctlOne is a loop over smartctl controllers
+func SmartctlOne(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _hp *hp.Hpdata, _verbose bool) *Smartctldata {
 	switch {
 	case _dmidecode == nil:
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: Skipping: dmidecode is nil\n")
+			fmt.Println("SmartctlOne: Skipping: dmidecode is nil\n")
 		}
 	case _scsi == nil:
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: Skipping: scsi is nil\n")
+			fmt.Println("SmartctlOne: Skipping: scsi is nil\n")
 		}
 	case (_df != nil) && (_df.Type_ == "network"):
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: Skipping: df.Type is network\n")
+			fmt.Println("SmartctlOne: Skipping: df.Type is network\n")
 		}
 	case (_df != nil) && (_df.Type_ == "tmpfs"):
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: Skipping: df.Type is tmpfs\n")
+			fmt.Println("SmartctlOne: Skipping: df.Type is tmpfs\n")
 		}
 	case (_df != nil) && (_df.Type_ == "none"):
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: Skipping: df.Type is none\n")
+			fmt.Println("SmartctlOne: Skipping: df.Type is none\n")
 		}
 	default:
 		if _verbose {
-			fmt.Println("DoListSmartctldataOne: found default\n")
+			fmt.Println("SmartctlOne: found default\n")
 		}
 		if (_dmidecode.Manufacturer_ == "HP") && (_scsi.Devicetype_ == "storage") && (_scsi.Vendor_ == "HP") { // Storage controller such as P410
 			if _verbose {
-				fmt.Println("DoListSmartctldataOne: found HP controller \n")
+				fmt.Println("SmartctlOne: found HP controller \n")
 			}
-			return DoListSmartctldataOneHP(_df, _scsi, _parted, _dmidecode, _verbose)
+			return SmartctlOneHP(_df, _scsi, _parted, _dmidecode, _verbose)
 		}
 		if (_dmidecode.Manufacturer_ == "HP") && (_scsi.Devicetype_ == "disk") && (_scsi.Vendor_ == "HP") && (len(_scsi.Generic_) > 0) && (_parted != nil) /* && (_parted.Type_ == "rawdevice")*/ { // Logical device on a storage controller such as P410
 			if _verbose {
-				fmt.Println("DoListSmartctldataOne: found HP logical disk\n")
+				fmt.Println("SmartctlOne: found HP logical disk\n")
 			}
-			return DoListSmartctldataOneHPDisk(_df, _scsi, _parted, _dmidecode, _verbose)
+			return SmartctlOneHPDisk(_df, _scsi, _parted, _dmidecode, _verbose)
 		}
 		if (_dmidecode.Manufacturer_ == "Supermicro") && (_scsi.Devicetype_ == "disk") && (_parted != nil) /* && (!genutil.StrSin(_parted.Type_, "partition|softraid"))*/ {
 			if _verbose {
-				fmt.Println("DoListSmartctldataOne: found Supermicro \n")
+				fmt.Println("SmartctlOne: found Supermicro \n")
 			}
-			return DoListSmartctldataOneSupermicro(_df, _scsi, _parted, _dmidecode, _verbose)
+			return SmartctlOneSupermicro(_df, _scsi, _parted, _dmidecode, _verbose)
 		}
 	}
 	return new(Smartctldata)
 }
 
-// DoListSmartctldataOneHP does one HP controller
-func DoListSmartctldataOneHP(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
+// SmartctlOneHP does one HP controller
+func SmartctlOneHP(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
 	sc := new(Smartctldata)
 
 	doStop := false
@@ -264,8 +264,8 @@ func DoListSmartctldataOneHP(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *part
 	return sc
 }
 
-// DoListSmartctldataOneHPDisk extracts smartctl for HP
-func DoListSmartctldataOneHPDisk(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
+// SmartctlOneHPDisk extracts smartctl for HP
+func SmartctlOneHPDisk(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
 	sc := new(Smartctldata)
 
 	if true {
@@ -344,8 +344,8 @@ func DoListSmartctldataOneHPDisk(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *
 	return sc
 }
 
-// DoListSmartctldataOneSupermicro extracts smartctl for supermicro
-func DoListSmartctldataOneSupermicro(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
+// SmartctlOneSupermicro extracts smartctl for supermicro
+func SmartctlOneSupermicro(_df *df.Dfdata, _scsi *scsi.Scsidata, _parted *parted.Parteddata, _dmidecode *dmidecode.Dmidecodedata, _verbose bool) *Smartctldata {
 	sc := new(Smartctldata)
 
 	if true {

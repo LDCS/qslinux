@@ -86,8 +86,8 @@ func (self *Mddata) Sprint() string {
 		self.Name_, self.Status_, self.Raidtype_, self.Level_, self.Members_, self.Blocks_, self.Chunk_, self.Bitmap_, self.Nearcopies_, self.Pages_, self.Superversion_, self.Algo_, self.Numcomponents_, self.Componentstatus_, self.Checkpct_, self.Checkminutesleft_, self.Resync_)
 }
 
-// DoListMddata extracts mdadm data
-func DoListMddata(_verbose bool) (smap map[string]*Mddata) {
+// Md extracts mdadm data
+func Md(_verbose bool) (smap map[string]*Mddata) {
 	smap = make(map[string]*Mddata)
 	out := genutil.BashExecOrDie(_verbose, "/usr/bin/timeout 10 /bin/cat /proc/mdstat", ".")
 	if _verbose {

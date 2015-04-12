@@ -84,8 +84,8 @@ func cleanItem(_str string) string {
 	return _str
 }
 
-// DoListDmidecodedata extracts dmidecode data
-func DoListDmidecodedata(_verbose bool) *Dmidecodedata {
+// Dmidecode extracts dmidecode data
+func Dmidecode(_verbose bool) *Dmidecodedata {
 	out := genutil.BashExecOrDie(_verbose, "/usr/bin/timeout 10 /usr/sbin/dmidecode -t System", ".")
 	if _verbose {
 		fmt.Println(out)

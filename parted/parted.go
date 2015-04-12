@@ -105,8 +105,8 @@ func (self *Parteddata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListParteddata extracts parted data
-func DoListParteddata(_verbose bool) (smap map[string][]*Parteddata) {
+// Parted extracts parted data
+func Parted(_verbose bool) (smap map[string][]*Parteddata) {
 	smap = make(map[string][]*Parteddata)
 	out := genutil.BashExecOrDie(_verbose, "/usr/bin/timeout 10 /sbin/parted -lms", ".")
 	if _verbose {

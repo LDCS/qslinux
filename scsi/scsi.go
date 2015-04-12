@@ -108,8 +108,8 @@ func (self *Scsidata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListScsidata extracts lsscsi data
-func DoListScsidata(_verbose bool) (smap map[string]*Scsidata) {
+// Scsi extracts lsscsi data
+func Scsi(_verbose bool) (smap map[string]*Scsidata) {
 	smap = make(map[string]*Scsidata)
 	out := genutil.BashExecOrDie(_verbose, "/usr/bin/timeout 10 /usr/bin/lsscsi -Lg; /usr/bin/timeout 10 /usr/bin/lsscsi -Lgt;", ".")
 	if _verbose {

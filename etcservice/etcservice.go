@@ -91,8 +91,8 @@ func (self *Servicedata) Print() {
 // New is generic
 func New() *Servicedata { return new(Servicedata) }
 
-// DoListServicedata holds chkconfig info
-func DoListServicedata(_verbose bool) (smap map[string]*Servicedata) {
+// Service holds chkconfig info
+func Service(_verbose bool) (smap map[string]*Servicedata) {
 	smap = make(map[string]*Servicedata)
 	out := genutil.BashExecOrDie(_verbose, "/sbin/service --status-all | sed -s 's/,/|/g'", ".")
 

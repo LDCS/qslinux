@@ -91,8 +91,8 @@ func (self *Hostsdata) Print() {
 // New is generic
 func New() *Hostsdata { return new(Hostsdata) }
 
-// DoListHostsdata extracts etc hosts info
-func DoListHostsdata(_verbose bool) (smap map[string]*Hostsdata) {
+// Hosts extracts etc hosts info
+func Hosts(_verbose bool) (smap map[string]*Hostsdata) {
 	smap = make(map[string]*Hostsdata)
 	out := genutil.BashExecOrDie(_verbose, "/bin/cat /etc/hosts", ".")
 	if _verbose {

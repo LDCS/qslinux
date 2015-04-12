@@ -105,8 +105,8 @@ func (self *Shadowdata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListShadowdata extracts info from etc shadow
-func DoListShadowdata(_verbose bool) (smap map[string]*Shadowdata) {
+// Shadow extracts info from etc shadow
+func Shadow(_verbose bool) (smap map[string]*Shadowdata) {
 	smap = make(map[string]*Shadowdata)
 	out := genutil.BashExecOrDie(_verbose, "/bin/cat /etc/shadow| sed -e 's/[ ]/_/g'", ".")
 	if _verbose {

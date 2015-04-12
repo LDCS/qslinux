@@ -94,8 +94,8 @@ func (self *Fstabdata) Print() {
 // New is generic
 func New() *Fstabdata { return new(Fstabdata) }
 
-// DoListFstabdata extracts fstab data
-func DoListFstabdata(_verbose bool) (smap map[string]*Fstabdata) {
+// Fstab extracts fstab data
+func Fstab(_verbose bool) (smap map[string]*Fstabdata) {
 	smap = make(map[string]*Fstabdata)
 	out := genutil.BashExecOrDie(_verbose, "/bin/cat /etc/fstab| sed -e 's/,/|/g'", ".")
 	if _verbose {

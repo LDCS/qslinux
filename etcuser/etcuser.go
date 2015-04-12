@@ -95,8 +95,8 @@ func (self *Userdata) Print() {
 	fmt.Printf(fmt.Sprint())
 }
 
-// DoListUserdata extracts user info from etc passwd
-func DoListUserdata(_verbose bool) (smap map[string]*Userdata) {
+// User extracts user info from etc passwd
+func User(_verbose bool) (smap map[string]*Userdata) {
 	smap = make(map[string]*Userdata)
 	out := genutil.BashExecOrDie(_verbose, "/bin/cat /etc/passwd | sed -e 's/[ ]/_/g'", ".")
 	if _verbose {
